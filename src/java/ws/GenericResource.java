@@ -81,6 +81,32 @@ public class GenericResource {
                  .request()
                   .get(String.class);
     }
+    
+    
+    @GET
+    @Path("/pessoa/")
+    public String getPessoa() 
+    {
+            return ClientBuilder.newClient()
+                 .target("https://randomuser.me/api/")
+                 .request()
+                  .get(String.class);
+    }
+    
+    @GET
+    @Path("/pessoa/{nacionalidade}")
+    public String getPessoa(
+            @PathParam("nacionalidade") String nacionalidade ) 
+    {
+            return ClientBuilder.newClient()
+                 .target("https://randomuser.me/api/")
+                 .queryParam("nat", nacionalidade)
+                 .queryParam("gender", "male")
+                 .request()
+                  .get(String.class);
+    }
+    
+    
 
     /**
      * PUT method for updating or creating an instance of GenericResource
